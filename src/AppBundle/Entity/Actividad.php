@@ -32,6 +32,13 @@ class Actividad
     /**
      * @var string
      *
+     * @ORM\Column(name="titulo", type="string", length=150)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="contenido", type="text")
      */
     private $contenido;
@@ -198,5 +205,26 @@ class Actividad
     public function getRespuestas()
     {
         return $this->respuestas;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param string $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+    }
+
+    function __toString()
+    {
+        return $this->titulo;
     }
 }
