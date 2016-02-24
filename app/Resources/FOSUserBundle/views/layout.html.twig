@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet" />
+            <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet" />
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5">
+                </div>
+                <div class="col-md-2">
+                    {% block fos_user_content %}
+                    {% endblock fos_user_content %}
+                </div>
+                <div class="col-md-5">
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+            <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>

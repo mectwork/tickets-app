@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h4><small>Nombre del proyecto:</small><br /></h4> 
+        <h4>{{ proyecto.nombre }}</h4>
+    <h4><small>Empresa:</small></h4>
+        {% if proyecto.empresa.nombre %}
+            <a href="#"><span class="label label-default"> {{ proyecto.empresa.nombre }} </span></a>&nbsp;
+        {% else %}
+            No pertenece a ninguna empresa
+        {% endif %}
+    <hr>
+    {{ form_start(delete_form) }}
+        <a class="btn btn-default" href="{{ path('proyecto_edit', { 'id': proyecto.id }) }}">Editar </a>
+        <input type="submit" value="Borrar" class="btn btn-default">
+    {{ form_end(delete_form) }}
+{% endblock %}

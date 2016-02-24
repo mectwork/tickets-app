@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+        <div class="form-group">
+            <h4><small>Nombre de la Empresa: </small></h4>
+            {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Nombre'}}) }}
+        </div>
+
+        <hr>
+        
+        <button type="submit" class="btn btn-default">Guardar</button>
+        <a href="{{ path('empresa_index') }}" class="btn btn-default">Cancelar</a>
+    {{ form_end(form) }}
+{% endblock %}

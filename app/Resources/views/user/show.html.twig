@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h4><small>Nombre y apellidos:</small><br /></h4> 
+    <h4>{{ user.nombrecompleto }}</h4>
+    
+    <h4><small>Usuario:</small><br /></h4> 
+    <h4>{{ user.username }}</h4>
+    
+    <h4><small>Correo:</small><br /></h4> 
+    <h4>{{ user.email }}</h4>
+    
+    <h4><small>Empresa:</small><br /></h4> 
+    {% if user.empresa.nombre %}
+       <h4> {{ user.empresa.nombre }} </h4>
+    {% endif %}
+   
+
+    <h4><small>Proyectos del usuario:</small><br /></h4> 
+    {% for proyecto in user.proyectos %}
+            <a href="#"><span class="label label-default"> {{ proyecto.nombre }} </span></a>&nbsp;
+        {% else %}
+            No tiene proyectos
+        {% endfor %}
+
+    <hr>
+    
+    {{ form_start(delete_form) }}
+        <a class="btn btn-default" href="{{ path('usuario_edit', { 'id': user.id }) }}">Editar </a>
+        <input type="submit" value="Borrar" class="btn btn-default">
+    {{ form_end(delete_form) }}
+{% endblock %}

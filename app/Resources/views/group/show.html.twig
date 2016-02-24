@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h4>
+        <small>Nombre del Grupo:</small><br />
+    </h4> 
+    <h4>
+        {{ group.name }}
+    </h4>
+    <h4>
+        <small>Roles del Grupo:</small><br />
+    </h4>
+    	{% for rol in group.roles %}
+		    <a href="#"><span class="label label-default">{{ rol }}</span></a>&nbsp;
+		{% else %}
+            No tiene roles
+		{% endfor %}
+    <hr>
+{% endblock %}

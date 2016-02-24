@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(edit_form) }}
+    <div class="form-group">
+        <h4>
+            <small>Nombre y apellidos:</small>
+        </h4>
+        {{ form_widget(edit_form.nombrecompleto, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Usuario:</small>
+        </h4>
+        {{ form_widget(edit_form.username, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Correo:</small>
+        </h4>
+        {{ form_widget(edit_form.email, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Contraseña:</small>
+        </h4>
+        {{ form_widget(edit_form.password, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Repetir la contraseña:</small>
+        </h4>
+        {{ form_widget(edit_form.plain_password, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Empresa:</small>
+        </h4>
+        {{ form_widget(edit_form.empresa, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Grupos:</small>
+        </h4>
+        {{ form_widget(edit_form.groups, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>Proyectos:</small>
+        </h4>
+        {{ form_widget(edit_form.proyectos, {'attr': {'class': 'form-control'}}) }}
+
+        <h4>
+            <small>
+                <label>
+                    {{ form_widget(edit_form.enabled) }} Habilitado
+                </label>
+            </small>
+        </h4>
+
+        <hr>
+        <button type="submit" class="btn btn-default">Editar</button>
+    </div>
+    {{ form_end(edit_form) }}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('select#user_empresa').on('change', function () {
+                var idempresa = $(this).val();
+
+                $.ajax({
+                    url: Routing.generate('get_proyectos', {id: idempresa}),
+                    dataType: 'JSON',
+                    method: 'GET'
+                }).done(function (response, textStatus, jqXHR) {
+                    var selectUserProyectos = $('select#user_proyectos');
+                    selectUserProyectos.find('option').remove();
+
+                    for (var i = 0; i < response.length; i++) {
+                        selectUserProyectos.append($('<option value="' + response[i].id + '">' + response[i].nombre + '</option>'))
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

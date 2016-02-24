@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h4><small>Nombre de la empresa:</small><br /></h4> 
+        <h4>{{ empresa.nombre }}</h4>
+
+    <h4><small>Proyectos de la empresa:</small></h4>
+        {% for proyecto in empresa.proyectos %}
+            <a href="#"><span class="label label-default"> {{ proyecto.nombre }} </span></a>&nbsp;
+        {% else %}
+            No tiene proyectos
+        {% endfor %}
+    <hr>
+    {{ form_start(delete_form) }}
+        <a class="btn btn-default" href="{{ path('empresa_edit', { 'id': empresa.id }) }}">Editar </a>
+        <input type="submit" value="Borrar" class="btn btn-default">
+    {{ form_end(delete_form) }}
+{% endblock %}
