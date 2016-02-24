@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,11 +16,14 @@ class RespuestaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('respuesta')
-            ->add('actividad')
-        ;
+            ->add('actividad', EntityType::class, array(
+                'class' => 'AppBundle:Actividad',
+                'required' => true,
+                'label' => 'Actividad',
+            ))
+            ->add('respuesta');
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
