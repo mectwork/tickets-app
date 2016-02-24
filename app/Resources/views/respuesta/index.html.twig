@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Respuesta list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Respuesta</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for respuestum in respuestas %}
+            <tr>
+                <td><a href="{{ path('respuesta_show', { 'id': respuestum.id }) }}">{{ respuestum.id }}</a></td>
+                <td>{{ respuestum.respuesta }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('respuesta_show', { 'id': respuestum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('respuesta_edit', { 'id': respuestum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('respuesta_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,3 +1,11 @@
+app_respuesta:
+    resource: "@AppBundle/Controller/RespuestaController.php"
+    type:     annotation
+
+app_actividad:
+    resource: "@AppBundle/Controller/ActividadController.php"
+    type:     annotation
+
 user_group:
     resource: "@UserBundle/Controller/GroupController.php"
     type:     annotation
