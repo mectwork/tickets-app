@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}  {% endblock %}
+{% block body %}
+    <h2 class="header">Proyectos vinculados al usuario {{ app.user.username | upper }}</h2>
+    {% for proyecto in proyectos %}
+        <p>{{ proyecto.nombre }}</p>
+    {% endfor %}
+
+{% endblock %}
+
+
