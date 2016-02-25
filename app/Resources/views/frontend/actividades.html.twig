@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}  {% endblock %}
+{% block body %}
+    <h2 class="header">Actividades vinculadas al usuario {{ app.user.username | upper }}</h2>
+    {% for actividad in actividades %}
+        <p>{{ actividad.titulo }}</p>
+        <p>{{ actividad.contenido }}</p>
+    {% endfor %}
+
+{% endblock %}
+
+
