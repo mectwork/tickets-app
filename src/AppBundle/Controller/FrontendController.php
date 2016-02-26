@@ -32,7 +32,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * @Route("/actividades/{proyecto}", name="fornt_actividades_list")
+     * @Route("/actividades_proyecto/{proyecto}", name="front_actividades_list")
      */
     public function actividadesProyectoAction(Proyecto $proyecto)
     {
@@ -45,7 +45,7 @@ class FrontendController extends Controller
     }
 
     /**
-     * @Route("/{actividad}/show", name="front_actividad_show")
+     * @Route("/actividad/{actividad}/show", name="front_actividad_show")
      * @Method({"GET", "POST"})
      */
     public function actividadAction(Request $request, Actividad $actividad)
@@ -54,6 +54,14 @@ class FrontendController extends Controller
         $form = $this->createForm('AppBundle\Form\RespuestaType', $respuesta);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $respuesta->setActividad($actividad);
+            $em->persist($respuesta);
+            $em->flush();
+
+            return $this->redirectToRoute('front_actividad_show', array('actividad ' => $actividad->getId()));
+        }
         return $this->render('frontend/actividad.html.twig', array(
             'respuesta' => $respuesta,
             'actividad' => $actividad,
