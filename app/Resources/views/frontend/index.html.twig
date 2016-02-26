@@ -2,11 +2,26 @@
 
 {% block title %}  {% endblock %}
 {% block body %}
-    <h2 class="header">Proyectos vinculados al usuario {{ app.user.username | upper }}</h2>
-    {% for proyecto in proyectos %}
-        <p>{{ proyecto.nombre }}</p>
-    {% endfor %}
-
+    <h3 class="header">Proyectos vinculados al usuario {{ app.user.username | upper }}</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+            {% for proyecto in proyectos %}
+                <tr>
+                    <td>
+                        <a href="{{ path('front_actividades_list', { 'proyecto': proyecto.id }) }}">{{ proyecto.nombre }}</a></br>
+                    </td>
+                    <td class="table-td-options">
+                        <a href="{{ path('front_actividades_list', { 'proyecto': proyecto.id }) }}" class="btn btn-info"
+                           aria-label="Left Align">
+                            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 
 

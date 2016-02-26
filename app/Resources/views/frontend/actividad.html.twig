@@ -2,8 +2,29 @@
 
 {% block title %}  {% endblock %}
 {% block body %}
-    <h2>{{ actividad.titulo }}</h2>
+    <h4>{{ actividad.titulo }}</h4>
     <p>{{ actividad.contenido }}</p>
+    <div class="well">
+        {{ form_start(form) }}
+        <h3>Añadir comentario</h3>
+        {{ form_widget(form.respuesta) }}
+        <p class="hidden"> {{ form_widget(form.actividad) }}</p><br>
+        <button type="submit" class="btn btn-default">Comentar</button>
+        {{ form_end(form) }}
+    </div>
+    <h4>Respuestas</h4>
+    <table class="table table-striped table-responsive">
+        <tbody>
+        {% for respuesta in actividad.respuestas %}
+            <tr>
+                <td>
+                    <p>{{ respuesta.respuesta }}</p>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
 
 
