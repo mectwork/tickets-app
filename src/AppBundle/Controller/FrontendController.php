@@ -60,7 +60,17 @@ class FrontendController extends Controller
             $em->persist($respuesta);
             $em->flush();
 
-            return $this->redirectToRoute('front_actividad_show', array('actividad ' => $actividad->getId()));
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Hello Email')
+                ->setFrom('info@tickets.com')
+                ->setTo('mano@correo.com')
+                ->setBody('Se ha creado un nuevo comentario para: '
+                    . $actividad->getTitulo()
+                    . ' del proyecto: '
+                    . $actividad->getProyecto()->getNombre());
+            $this->get('mailer')->send($message);
+
+            return $this->redirectToRoute('front_actividad_show', array('actividad' => $actividad->getId()));
         }
         return $this->render('frontend/actividad.html.twig', array(
             'respuesta' => $respuesta,
