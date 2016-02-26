@@ -39,8 +39,16 @@ class Proyecto
      */
     private $usuarios;
 
-    public function __construct() {
+    /**
+     * @ORM\OneToMany(targetEntity="Actividad", mappedBy="proyecto")
+     *
+     */
+    private $actividades;
+
+    public function __construct()
+    {
         $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->actividades = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -138,5 +146,45 @@ class Proyecto
     public function getUsuarios()
     {
         return $this->usuarios;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActividades()
+    {
+        return $this->actividades;
+    }
+
+    /**
+     * @param mixed $actividades
+     */
+    public function setActividades($actividades)
+    {
+        $this->actividades = $actividades;
+    }
+
+    /**
+     * Add actividad
+     *
+     * @param \AppBundle\Entity\Actividad $actividad
+     *
+     * @return Proyecto
+     */
+    public function addActividade(\AppBundle\Entity\Actividad $actividad)
+    {
+        $this->actividades[] = $actividad;
+
+        return $this;
+    }
+
+    /**
+     * Remove actividad
+     *
+     * @param \AppBundle\Entity\Actividad $actividad
+     */
+    public function removeActividad(\AppBundle\Entity\Actividad $actividad)
+    {
+        $this->actividades->removeElement($actividad);
     }
 }
