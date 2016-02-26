@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    {% block stylesheets %}
+        <link href="{{ asset('bundles/app/css/bootstrap.min.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">{{ app.user.nombrecompleto }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span></a></li>
+                </ul>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% block sidebar %}
+                    <div class="list-group">
+                        <h4 class="list-group-item">
+                            {{ app.user.empresa }}
+                        </h4>
+                        <a class="list-group-item" href="{{ path('front_proyectos_list') }}">
+                            Proyectos suscritos
+                        </a>
+                        <a class="list-group-item" href="{{ path('front_proyectos_list') }}">
+                            Suscribirse a proyecto
+                        </a>
+                    </div>
+                {% endblock %}
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            {% block body %}
+            {% endblock %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback":"fos.Router.setData"} ) }}"></script>
+{% endblock %}
+</body>
+</html>
