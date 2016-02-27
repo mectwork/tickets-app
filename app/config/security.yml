@@ -48,7 +48,3 @@ security:
         - { path: ^/resetting, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
 
-        - { path: ^/empresa, role: ROLE_USER }
-        - { path: ^/proyecto, role: ROLE_USER }
-        - { path: ^/grupo, role: ROLE_USER }
-        - { path: ^/usuario, role: ROLE_USER }

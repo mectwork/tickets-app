@@ -12,7 +12,7 @@ use AppBundle\Form\ActividadType;
 /**
  * Actividad controller.
  *
- * @Route("/actividad")
+ * @Route("/admin/actividad")
  */
 class ActividadController extends Controller
 {

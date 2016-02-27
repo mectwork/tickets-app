@@ -11,7 +11,7 @@ use AppBundle\Entity\Empresa;
 /**
  * Empresa controller.
  *
- * @Route("/empresa")
+ * @Route("/admin/empresa")
  */
 class EmpresaController extends Controller
 {

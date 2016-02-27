@@ -12,7 +12,7 @@ use AppBundle\Form\RespuestaType;
 /**
  * Respuesta controller.
  *
- * @Route("/respuesta")
+ * @Route("/admin/respuesta")
  */
 class RespuestaController extends Controller
 {

@@ -13,7 +13,7 @@ use AppBundle\Entity\Proyecto;
 /**
  * Proyecto controller.
  *
- * @Route("/proyecto")
+ * @Route("/admin/proyecto")
  */
 class ProyectoController extends Controller
 {
